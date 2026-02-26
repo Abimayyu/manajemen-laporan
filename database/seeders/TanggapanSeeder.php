@@ -11,8 +11,8 @@ class TanggapanSeeder extends Seeder
     {
         $now = now();
 
-        $laporanData = DB::table('laporan')
-            ->join('kategori_laporan', 'laporan.kategori_id', '=', 'kategori_laporan.id')
+        $laporanData = DB::table('tb_laporan')
+            ->join('tb_kategori_laporan', 'tb_laporan.kategori_id', '=', 'tb_kategori_laporan.id')
             ->select('laporan.id as laporan_id', 'kategori_laporan.nama_kategori')
             ->get();
 

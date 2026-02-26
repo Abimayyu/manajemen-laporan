@@ -13,7 +13,7 @@ class TanggapanSeeder extends Seeder
 
         $laporanData = DB::table('tb_laporan')
             ->join('tb_kategori_laporan', 'tb_laporan.kategori_id', '=', 'tb_kategori_laporan.id')
-            ->select('laporan.id as laporan_id', 'kategori_laporan.nama_kategori')
+            ->select('tb_laporan.id as laporan_id', 'tb_kategori_laporan.nama_kategori')
             ->get();
 
         $petugasIds = DB::table('users')->where('role', 'petugas')->pluck('id')->toArray();
@@ -66,6 +66,6 @@ class TanggapanSeeder extends Seeder
             ];
         }
 
-        DB::table('tanggapan')->insert($tanggapan);
+        DB::table('tb_tanggapan')->insert($tanggapan);
     }
 }

@@ -33,35 +33,43 @@
 
         <!-- Sidebar Menu -->
         <nav class="mt-2">
-            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
-                data-accordion="false">
-                <li class="nav-item">
-                    <a href="#" class="nav-link @yield('dash-act')"><i class="nav-icon fas fa-home"></i>
-                        <p>Dashboard</p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="{{ route('kategori.index') }}" class="nav-link @yield('kat-act')"><i
-                            class="nav-icon fas fa-user"></i>
-                        <p>Kategori</p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="{{ route('laporanweb.index') }}" class="nav-link @yield('lap-act')"><i
-                            class="nav-icon fas fa-user"></i>
-                        <p>Laporan</p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="{{ route('tanggapan.index') }}" class="nav-link @yield('tag-act')"><i
-                            class="nav-icon fas fa-user"></i>
-                        <p>Tanggapan</p>
-                    </a>
-                </li>
+    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
+        data-accordion="false">
 
-                </li>
-            </ul>
-        </nav>
+        {{-- Dashboard, hanya untuk admin --}}
+        @if(auth()->user()->role === 'admin')
+        <li class="nav-item">
+            <a href="{{ route('dashboard') }}" class="nav-link @yield('dash-act')">
+                <i class="nav-icon fas fa-home"></i>
+                <p>Dashboard</p>
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a href="{{ route('kategori.index') }}" class="nav-link @yield('kat-act')">
+                <i class="nav-icon fas fa-list"></i>
+                <p>Kategori</p>
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a href="{{ route('laporanweb.index') }}" class="nav-link @yield('lap-act')">
+                <i class="nav-icon fas fa-file-alt"></i>
+                <p>Laporan</p>
+            </a>
+        </li>
+        @endif
+
+        {{-- Tanggapan, bisa diakses admin & petugas --}}
+        <li class="nav-item">
+            <a href="{{ route('tanggapan.index') }}" class="nav-link @yield('tag-act')">
+                <i class="nav-icon fas fa-comments"></i>
+                <p>Tanggapan</p>
+            </a>
+        </li>
+
+    </ul>
+</nav>
         <!-- /.sidebar-menu -->
     </div>
     <!-- /.sidebar -->

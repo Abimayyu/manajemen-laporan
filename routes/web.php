@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\LaporanWevController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\TanggapanController;
 use Illuminate\Support\Facades\Route;
 
@@ -20,9 +21,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::middleware(['auth','verified'])->group(function(){
+    Route::get('/dashboard', [DashboardController::class,'index'])->name('dashboard');
+});
 
 Route::middleware('auth')->group(function () {
    // CRUD Kategori

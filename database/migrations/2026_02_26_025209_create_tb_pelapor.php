@@ -13,11 +13,6 @@ return new class extends Migration
     {
         Schema::create('tb_pelapor', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')
-                ->unique() 
-                ->constrained('users')
-                ->cascadeOnDelete();
-
             $table->string('nik', 20)->unique();
             $table->string('nama', 150);
             $table->string('no_hp', 20)->nullable();

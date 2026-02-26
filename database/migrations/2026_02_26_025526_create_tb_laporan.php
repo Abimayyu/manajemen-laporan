@@ -19,7 +19,7 @@ return new class extends Migration
                 ->restrictOnDelete();
 
             $table->foreignId('pelapor_id')
-                ->constrained('users')
+                ->constrained('tb_pelapor')
                 ->cascadeOnUpdate()
                 ->restrictOnDelete();
 

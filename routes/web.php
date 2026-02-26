@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\KategoriController;
+use App\Http\Controllers\RekapLaporanController;
 use App\Http\Controllers\LaporanWevController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\TanggapanController;
@@ -28,6 +29,7 @@ Route::middleware(['auth','verified'])->group(function(){
 Route::middleware('auth')->group(function () {
    // CRUD Kategori
     Route::resource('kategori', KategoriController::class);
+    Route::get('/rekap-laporan', [RekapLaporanController::class,'index'])->name('rekap-laporan.index');
 
     // CRUD Laporan
     Route::resource('laporanweb', LaporanWevController::class);

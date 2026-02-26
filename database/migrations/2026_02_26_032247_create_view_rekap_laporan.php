@@ -20,7 +20,7 @@ return new class extends Migration
                 SUM(CASE WHEN status = 'diproses' THEN 1 ELSE 0 END) AS jumlah_diproses,
                 SUM(CASE WHEN status = 'selesai' THEN 1 ELSE 0 END) AS jumlah_selesai,
                 SUM(CASE WHEN status = 'ditolak' THEN 1 ELSE 0 END) AS jumlah_ditolak
-            FROM laporan
+            FROM tb_laporan
             GROUP BY YEAR(tanggal_laporan), MONTH(tanggal_laporan)
         ");
     }

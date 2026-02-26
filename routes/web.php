@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\KategoriController;
-use App\Http\Controllers\LaporanController;
+use App\Http\Controllers\LaporanWevController;
 use App\Http\Controllers\TanggapanController;
 use Illuminate\Support\Facades\Route;
 
@@ -29,7 +29,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('kategori', KategoriController::class);
 
     // CRUD Laporan
-    Route::resource('laporan', LaporanController::class);
+    Route::resource('laporanweb', LaporanWevController::class);
 
     // CRUD Tanggapan
     Route::resource('tanggapan', TanggapanController::class);

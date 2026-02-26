@@ -41,8 +41,8 @@ class LaporanController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'kategori_id' => 'required|exists:kategori_laporan,id',
-            'pelapor_id' => 'required|exists:pelapor,id',
+            'kategori_id' => 'required|exists:tb_kategori_laporan,id',
+            'pelapor_id' => 'required|exists:tb_pelapor,id',
             'judul' => 'required|string|max:255',
             'isi_laporan' => 'required|string',
             'status' => 'required|in:diajukan,diproses,selesai,ditolak',
@@ -62,7 +62,7 @@ class LaporanController extends Controller
         $laporan = Laporan::findOrFail($id);
 
         $validated = $request->validate([
-            'kategori_id' => 'sometimes|exists:kategori_laporan,id',
+            'kategori_id' => 'sometimes|exists:tb_kategori_laporan,id',
             'judul' => 'sometimes|string|max:255',
             'isi_laporan' => 'sometimes|string',
             'status' => 'sometimes|in:diajukan,diproses,selesai,ditolak',

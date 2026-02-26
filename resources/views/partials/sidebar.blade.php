@@ -47,7 +47,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('laporan.index') }}" class="nav-link @yield('lap-act')"><i
+                    <a href="{{ route('laporanweb.index') }}" class="nav-link @yield('lap-act')"><i
                             class="nav-icon fas fa-user"></i>
                         <p>Laporan</p>
                     </a>

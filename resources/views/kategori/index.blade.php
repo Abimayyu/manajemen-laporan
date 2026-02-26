@@ -1,18 +1,18 @@
 @extends('partials.main')
-@section('title', 'Data Pegawai')
-@section('peg-act', 'active')
+@section('title', 'Data Kategori')
+@section('kat-act', 'active')
 @section('content')
     <!-- Content Header (Page header) -->
     <div class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0">Data Pegawai</h1>
+                    <h1 class="m-0">Data Kategori</h1>
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
-                        <li class="breadcrumb-item active">Data Pegawai</li>
+                        <li class="breadcrumb-item active">Data Kategori</li>
                     </ol>
                 </div><!-- /.col -->
             </div><!-- /.row -->
@@ -26,10 +26,10 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">Tabel Data Pegawai</h3>
+                            <h3 class="card-title">Tabel Data Kategori</h3>
                             @if (auth()->user()->role === 'admin')
-                                <a href="{{ route('pegawai.create') }}" class="btn btn-primary float-right">Tambah
-                                    Pegawai</a>
+                                <a href="{{ route('kategori.create') }}" class="btn btn-primary float-right">Tambah
+                                    Kategori</a>
                             @endif
                         </div>
                         <div class="card-body">
@@ -37,12 +37,9 @@
                                 <thead>
                                     <tr>
                                         <th>NO</th>
-                                        <th>Nama</th>
-                                        <th>NIP</th>
-                                        <th>Posisi</th>
-                                        <th>Departemen</th>
-                                        <th>Gaji</th>
-                                        <th>Tanggal Bergabung</th>
+                                        <th>Nama Kategori</th>
+                                        <th>Deskripsi</th>
+                                        <th>Tanggal Dibuat</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
@@ -50,33 +47,30 @@
                                     @php
                                         $no = 1;
                                     @endphp
-                                    @foreach ($pegawai as $p)
-                                        <tr>
-                                            <td>{{ $no++ }}</td>
-                                            <td>{{ $p->name }}</td>
-                                            <td>{{ $p->nip }}</td>
-                                            <td>{{ $p->position }}</td>
-                                            <td>{{ $p->departement }}</td>
-                                            <td>{{ $p->salary }}</td>
-                                            <td>{{ $p->join_date ? \Carbon\Carbon::parse($p->join_date)->isoFormat('D MMMM Y') : '-' }}
-                                            </td>
+                                   @foreach ($kategori as $k)
+                                    <tr>
+                                        <td>{{ $no++ }}</td>
+                                        <td>{{ $k->nama_kategori }}</td>
+                                        <td>{{ $k->deskripsi ?? '-' }}</td>
+                                        <td>{{ $k->created_at ? \Carbon\Carbon::parse($k->created_at)->isoFormat('D MMMM Y') : '-' }}</td>
+                                        <td>
+                                            <div class="btn-group">
+                                                <a href="{{ route('kategori.edit', $k->id) }}" class="btn btn-success">
+                                                    <i class="fas fa-edit" title="Edit Kategori"></i>
+                                                </a>
 
-                                            <td>
-                                                <div class="btn-group">
-                                                    <a href="{{ route('pegawai.edit', $p->id) }}" class="btn btn-success"><i
-                                                            class="fas fa-edit" title="Edit Data"></i></a>
-                                                    @if (auth()->user()->role === 'admin')
-                                                        <form action="{{ route('pegawai.destroy', $p->id) }}"
-                                                            method="POST" style="display:inline;">
-                                                            @csrf
-                                                            @method('DELETE')
-                                                            <button type="submit" class="btn btn-danger"
-                                                                title="Hapus Data"><i class="fas fa-trash"></i></button>
-                                                        </form>
-                                                    @endif
-                                                </div>
-                                            </td>
-                                        </tr>
+                                                @if (auth()->user()->role === 'admin')
+                                                    <form action="{{ route('kategori.destroy', $k->id) }}" method="POST" style="display:inline;">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" class="btn btn-danger" title="Hapus Kategori">
+                                                            <i class="fas fa-trash"></i>
+                                                        </button>
+                                                    </form>
+                                                @endif
+                                            </div>
+                                        </td>
+                                    </tr>
                                     @endforeach
                                 </tbody>
                             </table>
@@ -105,7 +99,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    Apakah Anda yakin ingin menghapus data pegawai ini?
+                    Apakah Anda yakin ingin menghapus data Kategori ini?
                 </div>
                 <div class="modal-footer">
                     <form action="" method="POST" id="deleteForm">

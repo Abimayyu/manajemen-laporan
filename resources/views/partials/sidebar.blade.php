@@ -41,9 +41,21 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('pegawai.index') }}" class="nav-link @yield('peg-act')"><i
+                    <a href="{{ route('kategori.index') }}" class="nav-link @yield('kat-act')"><i
                             class="nav-icon fas fa-user"></i>
-                        <p>Pegawai</p>
+                        <p>Kategori</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('laporan.index') }}" class="nav-link @yield('lap-act')"><i
+                            class="nav-icon fas fa-user"></i>
+                        <p>Laporan</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('tanggapan.index') }}" class="nav-link @yield('tag-act')"><i
+                            class="nav-icon fas fa-user"></i>
+                        <p>Tanggapan</p>
                     </a>
                 </li>
 

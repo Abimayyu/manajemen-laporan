@@ -1,7 +1,8 @@
 <?php
 
-use App\Http\Controllers\pegawai\PegawaiController;
-use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\KategoriController;
+use App\Http\Controllers\LaporanController;
+use App\Http\Controllers\TanggapanController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,12 +25,14 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
-    Route::get('/pegawai', [PegawaiController::class, 'index'])->name('pegawai.index');
-    Route::get('/pegawai/create', [PegawaiController::class, 'create'])->name('pegawai.create');
-    Route::post('/pegawai', [PegawaiController::class, 'store'])->name('pegawai.store');
-    Route::get('/pegawai/edit/{id}', [PegawaiController::class, 'edit'])->name('pegawai.edit');
-    Route::put('/pegawai/{id}', [PegawaiController::class, 'update'])->name('pegawai.update');
-    Route::delete('/pegawai/{id}', [PegawaiController::class, 'destroy'])->name('pegawai.destroy');
+   // CRUD Kategori
+    Route::resource('kategori', KategoriController::class);
+
+    // CRUD Laporan
+    Route::resource('laporan', LaporanController::class);
+
+    // CRUD Tanggapan
+    Route::resource('tanggapan', TanggapanController::class);
 });
 
 require __DIR__ . '/auth.php';
